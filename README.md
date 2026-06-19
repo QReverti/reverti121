@@ -1,6 +1,8 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Мигр:
+Миграции:
+~~~
 php artisan make:migration create_blocks_table
 php artisan make:migration create_categories_table
+~~~
 
 database/migrations/2024_01_01_000001_create_categories_table.php:
 ~~~
@@ -32,7 +34,7 @@ return new class extends Migration
 ~~~
 
 database/migrations/2024_01_01_000002_create_blocks_table.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -65,8 +67,7 @@ return new class extends Migration
         Schema::dropIfExists('blocks');
     }
 };
-------------------------------------------------------------------------------------------------------
-
+~~~
 
 Модели:
 
