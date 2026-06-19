@@ -74,7 +74,7 @@ return new class extends Migration
 
 
 app/Models/Category.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 namespace App\Models;
@@ -107,12 +107,12 @@ class Category extends Model
         return $this->hasMany(Block::class)->where('is_published', true);
     }
 }
-------------------------------------------------------------------------------------------------------
+~~~
 
 
 
 app/Models/Block.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 namespace App\Models;
@@ -155,21 +155,20 @@ class Block extends Model
         return nl2br(e($this->content));
     }
 }
-------------------------------------------------------------------------------------------------------
-
+~~~
 
 
  сидеры
-------------------------------------------------------------------------------------------------------
+~~~
 php artisan make:seeder DatabaseSeeder
 php artisan make:seeder CategorySeeder
 php artisan make:seeder BlockSeeder
-------------------------------------------------------------------------------------------------------
+~~~
 
 
 
 database/seeders/CategorySeeder.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 namespace Database\Seeders;
@@ -209,12 +208,11 @@ class CategorySeeder extends Seeder
         }
     }
 }
-------------------------------------------------------------------------------------------------------
-
+~~~
 
 
 database/seeders/BlockSeeder.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 namespace Database\Seeders;
@@ -267,11 +265,11 @@ class BlockSeeder extends Seeder
         }
     }
 }
-------------------------------------------------------------------------------------------------------
+~~~
 
 
 database/seeders/DatabaseSeeder.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 namespace Database\Seeders;
@@ -288,16 +286,18 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
-------------------------------------------------------------------------------------------------------
+~~~
 
 
 контроллер:
+~~~
 php artisan make:controller HomeController
 php artisan make:controller BlockController
 php artisan make:controller CategoryController
+~~~
 
 app/Http/Controllers/HomeController.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 namespace App\Http\Controllers;
@@ -328,10 +328,10 @@ class HomeController extends Controller
         return view('home', compact('blocks', 'categories', 'recentBlocks'));
     }
 }
-------------------------------------------------------------------------------------------------------
+~~~
 
 app/Http/Controllers/BlockController.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 namespace App\Http\Controllers;
@@ -382,10 +382,10 @@ class BlockController extends Controller
         return view('blocks.by-category', compact('category', 'blocks'));
     }
 }
-------------------------------------------------------------------------------------------------------
+~~~
 
 app/Http/Controllers/CategoryController.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 namespace App\Http\Controllers;
@@ -416,11 +416,10 @@ class CategoryController extends Controller
         return view('categories.show', compact('category'));
     }
 }
-------------------------------------------------------------------------------------------------------
-
+~~~
 
 routes/web.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <?php
 
 use App\Http\Controllers\HomeController;
@@ -440,11 +439,11 @@ Route::prefix('categories')->name('categories.')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('index');
     Route::get('/{slug}', [CategoryController::class, 'show'])->name('show');
 });
-------------------------------------------------------------------------------------------------------
+~~~
 
 
 resources/views/layouts/app.blade.php:
-------------------------------------------------------------------------------------------------------
+~~~
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -528,11 +527,11 @@ resources/views/layouts/app.blade.php:
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-------------------------------------------------------------------------------------------------------
+~~~
 
 
 resources/views/home.blade.php:
-------------------------------------------------------------------------------------------------------
+~~~
 @extends('layouts.app')
 
 @section('title', 'Главная страница')
@@ -622,12 +621,11 @@ resources/views/home.blade.php:
         @endif
     </div>
 @endsection
-------------------------------------------------------------------------------------------------------
+~~~
 
-
-
+~~~
 Запуск проекта
-------------------------------------------------------------------------------------------------------
+
 # Запуск миграций
 php artisan migrate
 
@@ -636,10 +634,11 @@ php artisan db:seed
 
 # Запуск сервера
 php artisan serve
-------------------------------------------------------------------------------------------------------
+~~~
+~~~
 
 resources/views/blocks/show.blade.php:
-------------------------------------------------------------------------------------------------------
+~~~
 @extends('layouts.app')
 
 @section('title', $block->title)
@@ -689,7 +688,7 @@ resources/views/blocks/show.blade.php:
     @endif
 </div>
 @endsection
-------------------------------------------------------------------------------------------------------
+~~~
 
 
 
